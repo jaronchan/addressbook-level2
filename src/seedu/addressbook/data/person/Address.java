@@ -1,6 +1,10 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.addressclasses.Block;
+import seedu.addressbook.data.person.addressclasses.Street;
+import seedu.addressbook.data.person.addressclasses.Unit;
+import seedu.addressbook.data.person.addressclasses.PostalCode;
 
 /**
  * Represents a Person's address in the address book.
