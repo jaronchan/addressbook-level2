@@ -84,6 +84,18 @@ public class AddressBook {
     }
 
     /**
+     * Edits an existing person in the address book.
+     * Also checks the person's tags and updates {@link #allTags} with any new tags found,
+     * and updates the Tag objects in the person to point to those in {@link #allTags}.
+     *
+     * @throws PersonNotFoundException if no such Person could be found.
+     */
+    public void editPerson(ReadOnlyPerson target, Person toEdit) throws PersonNotFoundException {
+        allPersons.edit(target, toEdit);
+        syncTagsWithMasterList(toEdit);
+    }
+
+    /**
      * Returns true if an equivalent person exists in the address book.
      */
     public boolean containsPerson(ReadOnlyPerson key) {
