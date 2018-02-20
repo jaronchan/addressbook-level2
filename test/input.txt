@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -152,6 +152,34 @@
   add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
   list
   sort
+  list
+
+##########################################################
+# test edit person command
+##########################################################
+
+  # should catch invalid args format
+  edit 1 wrong args wrong args
+  edit 1 Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address
+  edit 1 Valid Name p/12345 valid@email.butNoPrefix a/valid, address
+  edit 1 Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address
+  edit 1 Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
+  
+  # should catch invalid person data
+  edit 1 []\[;] p/12345 e/valid@e.mail a/valid, address
+  edit 1 Valid Name p/not_numbers e/valid@e.mail a/valid, address
+  edit 1 Valid Name p/12345 e/notAnEmail a/valid, address
+  edit 1 Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
+
+  # should add correctly and list non private information
+  edit 1 Adam Brown p/555555 e/newadam@gmail.com a/555, omega street t/new
+  list
+  edit 2 Betsy Choo p/222222 e/benchoo@nus.edu.sg a/222, beta street t/opensecret
+  list
+
+  # should add correctly and using most recent list
+  find Adam Dickson
+  edit 2 Dickson Ee p/666666 pe/dickson@nus.edu.sg pa/444, delta street t/friends
   list
 
 ##########################################################
